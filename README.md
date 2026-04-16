@@ -1,1 +1,1 @@
-# pan-genome
+# pan-genome project
