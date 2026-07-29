@@ -1,0 +1,25 @@
+# Conda environment for the analysis/visualization steps.
+# HPC tools loaded via `module load` (bcftools, VEP, FastQC, singularity) are
+# NOT listed here; record their exact versions from the job scripts / module list.
+# Recreate with:  conda env create -f environments/environment.yml
+name: goat-pangenome
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - hifiasm
+  - gfastats
+  - mashtree
+  - odgi
+  - bcftools
+  - samtools
+  - plink2
+  - fastqc
+  - r-base>=4.2
+  - r-data.table
+  - r-ggplot2
+  - r-complexupset
+  # PanGenie and Minigraph-Cactus were built/containerised separately:
+  #   - Minigraph-Cactus: singularity image cactus:v2.9.9
+  #   - PanGenie: compiled from source

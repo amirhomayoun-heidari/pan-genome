@@ -1,8 +1,13 @@
+# Stage 04 - Structural-variant analysis in R
+# Input : goat_pg_SV_biallelic_header.tsv (from 01_extract_sv.sh)
+# Does  : SV length/type classification, carrier-frequency classes,
+#         haplotype->individual collapsing, and UpSet plots of SV sharing.
+
 
 library(data.table)
 sv <- fread("goat_pg_SV_biallelic_header.tsv")
 dim(sv)
-View(sv)
+# View(sv)  # interactive only
 
 
 #my data contains NA so I have to use as.numeric for the further calculation otherwise these NA would be problems.
@@ -112,7 +117,7 @@ library(ggplot2)
 # sample columns in my table
 sample_cols <- names(sv)[5:40]
 
-# I have to make sure genotype columns are numeric for the 10th time
+# I have to ensure genotype columns are numeric
 sv[, (sample_cols) := lapply(.SD, function(x) as.numeric(as.character(x))), .SDcols = sample_cols]
 
 # ---- define biological individuals ----
